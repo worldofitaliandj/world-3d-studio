@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="theme-color" content="#101522">
+<title>WORLD 3D STUDIO V2</title>
+<style>
+:root{--bg:#101522;--panel:#171f30;--panel2:#202b40;--line:#2d3b54;--text:#edf3ff;--muted:#9eacc4;--blue:#54a8ff;--cyan:#45e0d0}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:14px system-ui,Segoe UI,Arial;overflow:hidden}
+header{height:54px;background:#0b101b;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:12px;padding:0 14px}
+.brand{font-weight:850;letter-spacing:1.2px}.brand span{color:var(--cyan)}.tag{font-size:11px;color:var(--muted);border:1px solid var(--line);padding:4px 7px;border-radius:20px}
+button,select,input{font:inherit;color:inherit}button{background:var(--panel2);border:1px solid var(--line);border-radius:7px;padding:8px 10px;cursor:pointer}button:hover{border-color:var(--blue)}button.active{background:#174d79;border-color:var(--blue)}button.primary{background:#1769aa;border-color:#328bd1}
+main{height:calc(100dvh - 54px);display:grid;grid-template-columns:220px 1fr 250px;min-height:0}
+aside{background:var(--panel);overflow:auto;padding:12px;border-right:1px solid var(--line)}aside.right{border-right:0;border-left:1px solid var(--line)}
+h3{font-size:12px;text-transform:uppercase;letter-spacing:1px;color:#aebbd1;margin:8px 0 10px}
+.group{border-bottom:1px solid var(--line);padding-bottom:13px;margin-bottom:13px}
+.tools{display:grid;grid-template-columns:1fr 1fr;gap:7px}.tools button{min-height:40px}
+#viewportWrap{position:relative;min-width:0;min-height:0;background:radial-gradient(ellipse at center,#26334b,#101522 75%)}
+#viewport{width:100%;height:100%;display:block;touch-action:none}
+.hud{position:absolute;top:10px;left:12px;right:12px;display:flex;justify-content:space-between;gap:8px;pointer-events:none}
+.hud span{background:#101522c9;border:1px solid #40516d;border-radius:6px;padding:6px 9px;font-size:11px;color:#c5d4e9}
+#toolbar{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);display:flex;gap:6px;background:#101522df;padding:7px;border:1px solid var(--line);border-radius:10px;max-width:95%;overflow-x:auto}
+#toolbar button{white-space:nowrap}
+label{display:block;color:var(--muted);font-size:12px;margin:8px 0 4px}
+input[type=color]{width:100%;height:34px;padding:2px;background:var(--panel2);border:1px solid var(--line);border-radius:6px}
+input[type=range]{width:100%;accent-color:var(--blue)}
+input[type=text],select{width:100%;padding:8px;background:var(--panel2);border:1px solid var(--line);border-radius:6px}
+#objects{display:flex;flex-direction:column;gap:5px}
+.obj{width:100%;text-align:left;display:flex;justify-content:space-between;align-items:center}
+.obj.selected{border-color:var(--cyan);background:#16404b}
+small,.muted{color:var(--muted)}
+.row{display:flex;gap:6px}.row>*{flex:1;min-width:0}
+#timeline{position:absolute;left:12px;right:12px;bottom:65px;background:#101522df;border:1px solid var(--line);border-radius:8px;padding:8px;display:none}
+#timeline.show{display:block}.timelineTop{display:flex;justify-content:space-between;align-items:center;gap:8px}
+#timeRange{width:100%}
+.status{font-size:11px;color:var(--muted);margin-top:8px;line-height:1.4}
+footer{position:fixed;bottom:0;left:0;right:0;pointer-events:none}
+@media(max-width:850px){
+ main{grid-template-columns:1fr;height:calc(100dvh - 54px)}
+ aside.left{display:none}aside.right{position:absolute;z-index:5;right:0;top:54px;bottom:0;width:min(280px,82vw);transform:translateX(100%);transition:transform .2s;box-shadow:-12px 0 30px #0007}
+ aside.right.open{transform:translateX(0)}
+ #viewportWrap{height:100%;grid-column:1}
+ header{gap:7px;padding:0 9px}.tag{display:none}
+ #toolbar{bottom:12px}.hud{top:7px}
+}
+</style>
+<script type="importmap">
+{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}
+</script>
+</head>
+<body>
+<header>
+ <div class="brand">WORLD <span>3D</span> STUDIO</div><div class="tag">V2 · FREE 3D CREATOR</div>
+ <div style="flex:1"></div>
+ <button id="newBtn">Nuovo</button><button id="projectSaveBtn" class="primary">Salva progetto</button><button id="projectOpenBtn">Apri progetto</button><input id="projectInput" type="file" accept=".w3d,.json,application/json" hidden><button id="importBtn">Importa GLB</button><input id="fileInput" type="file" accept=".glb,.gltf" hidden><button id="saveBtn">Esporta GLB</button><button id="panelBtn">Proprietà ☰</button>
+</header>
+<main>
+<aside class="left">
+ <div class="group"><h3>Creazione</h3><div class="tools">
+ <button data-add="box">▧ Cubo</button><button data-add="sphere">● Sfera</button>
+ <button data-add="torus">◎ Toro</button><button data-add="cylinder">▤ Cilindro</button>
+ <button data-add="cone">△ Cono</button><button data-add="plane">▱ Piano</button><button id="text3dBtn">T Testo 3D</button><button id="particlesBtn">✦ Particelle</button>
+ </div></div>
+ <div class="group"><h3>Scena</h3><div id="objects"></div>
+ <div class="row" style="margin-top:8px"><button id="duplicateBtn">Duplica</button><button id="deleteBtn">Elimina</button></div></div>
+ <div class="group"><h3>Visualizzazione</h3><button id="gridBtn" style="width:100%">Mostra / nascondi griglia</button></div>
+ <div class="status">Suggerimento: trascina per ruotare la vista, usa la rotellina per lo zoom. Tocca un oggetto per selezionarlo.</div>
+</aside>
+<section id="viewportWrap">
+ <canvas id="viewport"></canvas>
+ <div class="hud"><span>SCENA 3D · PERSPECTIVE</span><span id="selectionLabel">Nessun oggetto selezionato</span></div>
+ <div id="timeline">
+  <div class="timelineTop"><strong>ANIMAZIONE · 0–10 s</strong><div class="row" style="flex:0 0 auto"><button id="keyBtn">◆ Keyframe</button><button id="playBtn">▶ Play</button></div></div>
+  <input id="timeRange" type="range" min="0" max="10" step=".1" value="0"><small id="timeLabel">0.0 s</small>
+ </div>
+ <div id="toolbar">
+  <button class="active" data-mode="translate">↔ Sposta</button><button data-mode="rotate">⟳ Ruota</button><button data-mode="scale">⤢ Scala</button>
+  <select id="quickAdd" aria-label="Aggiungi oggetto" style="width:auto;min-width:112px"><option value="">＋ Oggetto</option><option value="box">Cubo</option><option value="sphere">Sfera</option><option value="torus">Toro</option><option value="cylinder">Cilindro</option><option value="cone">Cono</option><option value="plane">Piano</option><option value="__text">Testo 3D</option><option value="__particles">Particelle</option></select><button id="timelineBtn">◷ Timeline</button><button id="cameraKeyBtn">◆ Key camera</button><button id="neonBtn">✧ Neon</button><button id="recordBtn">● Registra video</button>
+ </div>
+</section>
+<aside class="right" id="properties">
+ <div class="group"><h3>Oggetto selezionato</h3><label>Nome</label><input id="objName" type="text" placeholder="Nome oggetto">
+ <label>Colore materiale</label><input id="objColor" type="color" value="#4a9eff">
+ <label>Metallicità</label><input id="metal" type="range" min="0" max="1" step=".01" value=".25">
+ <label>Rugosità</label><input id="rough" type="range" min="0" max="1" step=".01" value=".35"></div>
+ <div class="group"><h3>Trasformazioni</h3>
+ <label>Posizione X / Y / Z</label><div class="row"><input id="px" type="number" step=".1" value="0"><input id="py" type="number" step=".1" value="0"><input id="pz" type="number" step=".1" value="0"></div>
+ <label>Rotazione X / Y / Z</label><div class="row"><input id="rx" type="number" step="5" value="0"><input id="ry" type="number" step="5" value="0"><input id="rz" type="number" step="5" value="0"></div>
+ <label>Scala X / Y / Z</label><div class="row"><input id="sx" type="number" step=".1" value="1"><input id="sy" type="number" step=".1" value="1"><input id="sz" type="number" step=".1" value="1"></div></div>
+ <div class="group"><h3>Look videoclip DJ</h3><label>Colore neon</label><input id="neonColor" type="color" value="#16d9ff"><label>Intensità neon</label><input id="neonPower" type="range" min="0" max="5" step=".1" value="2.5"><label>Numero particelle</label><input id="particleCount" type="range" min="100" max="5000" step="100" value="1200"><button id="addParticles" style="width:100%;margin-top:7px">Crea sistema particelle</button></div><div class="group"><h3>Illuminazione</h3><label>Intensità luce</label><input id="lightPower" type="range" min=".2" max="4" step=".1" value="2"><label>Colore sfondo</label><input id="bgColor" type="color" value="#182238"></div>
+ <div class="group"><h3>Render e output</h3><button id="pngBtn" class="primary" style="width:100%">Esporta immagine PNG</button><p class="status">Importa modelli GLB/GLTF. GLB è preferibile perché include le risorse. Testo 3D richiede connessione per il font gratuito. Neon usa materiali emissivi e luci realtime, non bloom cinematografico. Registra il viewport in WebM.</p></div>
+</aside>
+</main>
+<script type="module">
+import * as THREE from 'three';
+import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
+import {TransformControls} from 'three/addons/controls/TransformControls.js';
+import {GLTFExporter} from 'three/addons/exporters/GLTFExporter.js';
+import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
+import {FontLoader} from 'three/addons/loaders/FontLoader.js';
+import {TextGeometry} from 'three/addons/geometries/TextGeometry.js';
+
+const canvas=document.querySelector('#viewport');
+const renderer=new THREE.WebGLRenderer({canvas,antialias:true,preserveDrawingBuffer:true});
+renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,2));renderer.setSize(canvas.clientWidth,canvas.clientHeight,false);
+renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1;
+const scene=new THREE.Scene();scene.background=new THREE.Color('#182238');
+const camera=new THREE.PerspectiveCamera(50,1,.1,1000);camera.position.set(6,5,8);
+const orbit=new OrbitControls(camera,renderer.domElement);orbit.enableDamping=true;
+const transform=new TransformControls(camera,renderer.domElement);scene.add(transform.getHelper());
+transform.addEventListener('dragging-changed',e=>orbit.enabled=!e.value);
+const hemi=new THREE.HemisphereLight(0xffffff,0x536078,1.4);scene.add(hemi);
+const key=new THREE.DirectionalLight(0xffffff,2);key.position.set(5,8,5);scene.add(key);
+const fill=new THREE.PointLight(0x4aaaff,35,30);fill.position.set(-5,3,-4);scene.add(fill);
+const grid=new THREE.GridHelper(30,30,0x55708f,0x2d3d57);scene.add(grid);
+const floor=new THREE.Mesh(new THREE.PlaneGeometry(200,200),new THREE.MeshStandardMaterial({color:0x131b2a,roughness:.9}));floor.rotation.x=-Math.PI/2;floor.position.y=-.015;scene.add(floor);
+let objects=[],selected=null,serial=0,playing=false,recording=false,mediaRecorder=null,chunks=[],startTime=0,keys=new Map(),cameraKeys=[],particleSystems=[];
+const gltfLoader=new GLTFLoader(); const fontLoader=new FontLoader();
+let neonColor='#16d9ff',neonPower=2.5;
+const raycaster=new THREE.Raycaster(),pointer=new THREE.Vector2();
+function resize(){const w=canvas.clientWidth,h=canvas.clientHeight;if(!w||!h)return;renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix()}
+window.addEventListener('resize',resize);new ResizeObserver(resize).observe(document.querySelector('#viewportWrap'));
+function addObject(type){
+ let geo;
+ if(type==='box')geo=new THREE.BoxGeometry(1.5,1.5,1.5);
+ if(type==='sphere')geo=new THREE.SphereGeometry(.85,48,32);
+ if(type==='torus')geo=new THREE.TorusGeometry(.8,.28,24,80);
+ if(type==='cylinder')geo=new THREE.CylinderGeometry(.7,.7,1.6,48);
+ if(type==='cone')geo=new THREE.ConeGeometry(.8,1.7,48);
+ if(type==='plane')geo=new THREE.PlaneGeometry(2,2);
+ const mat=new THREE.MeshStandardMaterial({color:Math.random()*0xffffff,metalness:.25,roughness:.35});
+ const mesh=new THREE.Mesh(geo,mat);mesh.name=type[0].toUpperCase()+type.slice(1)+'_'+(++serial);mesh.position.y=type==='plane'?1:0.8;
+ mesh.userData.w3dObject=true;scene.add(mesh);objects.push(mesh);select(mesh);refreshList();
+}
+function select(o){selected=o;transform.detach();if(o)transform.attach(o);document.querySelector('#selectionLabel').textContent=o?o.name:'Nessun oggetto selezionato';syncProps();refreshList()}
+function refreshList(){const el=document.querySelector('#objects');el.innerHTML='';objects.forEach(o=>{const b=document.createElement('button');b.className='obj'+(o===selected?' selected':'');b.textContent='◇ '+o.name;b.onclick=()=>select(o);el.append(b)})}
+function syncProps(){const o=selected;['objName','objColor','metal','rough','px','py','pz','rx','ry','rz','sx','sy','sz'].forEach(id=>document.getElementById(id).disabled=!o);if(!o)return;
+ document.querySelector('#objName').value=o.name;
+ const hasMat=!!o.material;['objColor','metal','rough'].forEach(id=>document.getElementById(id).disabled=!hasMat);
+ if(hasMat&&o.material.color){document.querySelector('#objColor').value='#'+o.material.color.getHexString();document.querySelector('#metal').value=o.material.metalness??0;document.querySelector('#rough').value=o.material.roughness??1;}
+ ['px','py','pz'].forEach((id,i)=>document.getElementById(id).value=o.position.toArray()[i].toFixed(2));
+ ['rx','ry','rz'].forEach((id,i)=>document.getElementById(id).value=THREE.MathUtils.radToDeg(o.rotation.toArray()[i]).toFixed(1));
+ ['sx','sy','sz'].forEach((id,i)=>document.getElementById(id).value=o.scale.toArray()[i].toFixed(2));
+}
+document.querySelectorAll('[data-add]').forEach(b=>b.onclick=()=>addObject(b.dataset.add));
+document.querySelector('#quickAdd').onchange=e=>{const v=e.target.value;if(v==='__text')document.querySelector('#text3dBtn').click();else if(v==='__particles')createParticles();else if(v)addObject(v);e.target.value=''};
+document.querySelectorAll('[data-mode]').forEach(b=>b.onclick=()=>{transform.setMode(b.dataset.mode);document.querySelectorAll('[data-mode]').forEach(x=>x.classList.toggle('active',x===b))});
+canvas.addEventListener('pointerdown',e=>{if(transform.dragging)return;const r=canvas.getBoundingClientRect();pointer.x=((e.clientX-r.left)/r.width)*2-1;pointer.y=-((e.clientY-r.top)/r.height)*2+1;raycaster.setFromCamera(pointer,camera);const hit=raycaster.intersectObjects(objects,true)[0];if(hit){let root=hit.object;while(root.parent&&root.parent!==scene)root=root.parent;select(root)}});
+document.querySelector('#objName').onchange=e=>{if(selected){selected.name=e.target.value||selected.name;refreshList();document.querySelector('#selectionLabel').textContent=selected.name}};
+document.querySelector('#objColor').oninput=e=>{if(selected)selected.material.color.set(e.target.value)};
+document.querySelector('#metal').oninput=e=>{if(selected)selected.material.metalness=+e.target.value};
+document.querySelector('#rough').oninput=e=>{if(selected)selected.material.roughness=+e.target.value};
+function bindVec(ids,vec,convert=false){ids.forEach((id,i)=>document.getElementById(id).onchange=e=>{if(!selected)return;vec[i](+e.target.value,convert)})}
+bindVec(['px','py','pz'],[(v)=>selected.position.x=v,(v)=>selected.position.y=v,(v)=>selected.position.z=v]);
+bindVec(['rx','ry','rz'],[(v)=>selected.rotation.x=THREE.MathUtils.degToRad(v),(v)=>selected.rotation.y=THREE.MathUtils.degToRad(v),(v)=>selected.rotation.z=THREE.MathUtils.degToRad(v)]);
+bindVec(['sx','sy','sz'],[(v)=>selected.scale.x=v,(v)=>selected.scale.y=v,(v)=>selected.scale.z=v]);
+document.querySelector('#lightPower').oninput=e=>key.intensity=+e.target.value;
+document.querySelector('#bgColor').oninput=e=>scene.background.set(e.target.value);
+document.querySelector('#gridBtn').onclick=()=>grid.visible=!grid.visible;
+document.querySelector('#duplicateBtn').onclick=()=>{if(!selected)return;const c=selected.clone();c.name=selected.name+'_copy';c.position.x+=1;scene.add(c);objects.push(c);select(c)};
+document.querySelector('#deleteBtn').onclick=()=>{if(!selected)return;scene.remove(selected);objects=objects.filter(x=>x!==selected);particleSystems=particleSystems.filter(x=>x!==selected);select(null)};
+document.querySelector('#newBtn').onclick=()=>{objects.forEach(o=>scene.remove(o));objects=[];serial=0;keys.clear();cameraKeys=[];particleSystems=[];select(null);refreshList()};
+document.querySelector('#panelBtn').onclick=()=>document.querySelector('#properties').classList.toggle('open');
+document.querySelector('#timelineBtn').onclick=()=>document.querySelector('#timeline').classList.toggle('show');
+document.querySelector('#keyBtn').onclick=()=>{if(!selected)return;const t=+document.querySelector('#timeRange').value;if(!keys.has(selected.uuid))keys.set(selected.uuid,[]);keys.get(selected.uuid).push({t,p:selected.position.clone(),r:selected.rotation.clone(),s:selected.scale.clone()});keys.get(selected.uuid).sort((a,b)=>a.t-b.t);};
+function applyTime(t){applyCameraTime(t);for(const o of objects){const arr=keys.get(o.uuid);if(!arr||!arr.length)continue;let a=arr[0],b=arr[arr.length-1];for(let i=0;i<arr.length-1;i++)if(t>=arr[i].t&&t<=arr[i+1].t){a=arr[i];b=arr[i+1];break}const f=a===b?0:THREE.MathUtils.clamp((t-a.t)/(b.t-a.t),0,1);o.position.lerpVectors(a.p,b.p,f);o.rotation.set(a.r.x+(b.r.x-a.r.x)*f,a.r.y+(b.r.y-a.r.y)*f,a.r.z+(b.r.z-a.r.z)*f);o.scale.lerpVectors(a.s,b.s,f)}}
+document.querySelector('#timeRange').oninput=e=>{const t=+e.target.value;document.querySelector('#timeLabel').textContent=t.toFixed(1)+' s';applyTime(t)};
+document.querySelector('#playBtn').onclick=()=>{playing=!playing;document.querySelector('#playBtn').textContent=playing?'Ⅱ Pausa':'▶ Play';if(playing)startTime=performance.now()-(+document.querySelector('#timeRange').value*1000)};
+
+// Importa modelli 3D. GLB è consigliato perché incorpora geometrie, materiali e texture.
+document.querySelector('#importBtn').onclick=()=>document.querySelector('#fileInput').click();
+document.querySelector('#fileInput').onchange=e=>{
+ const file=e.target.files[0];if(!file)return;
+ const url=URL.createObjectURL(file);
+ gltfLoader.load(url,g=>{const root=g.scene;root.userData.w3dObject=true;root.name=file.name.replace(/\.(glb|gltf)$/i,'')||'Modello_importato';scene.add(root);objects.push(root);select(root);refreshList();URL.revokeObjectURL(url);},
+ undefined,err=>{console.error(err);alert('Importazione non riuscita. Per i modelli con texture esterne usa preferibilmente GLB.');URL.revokeObjectURL(url)});
+ e.target.value='';
+};
+// Testo 3D con estrusione, tramite font open-source caricato da CDN.
+document.querySelector('#text3dBtn').onclick=()=>{
+ const value=prompt('Testo da creare in 3D:','WORLD OF ITALIAN DJ');if(!value)return;
+ fontLoader.load('https://cdn.jsdelivr.net/npm/three@0.160.0/examples/fonts/helvetiker_bold.typeface.json',font=>{
+  const geo=new TextGeometry(value,{font,size:.55,depth:.14,curveSegments:10,bevelEnabled:true,bevelThickness:.015,bevelSize:.01,bevelSegments:3});geo.computeBoundingBox();geo.center();
+  const mesh=new THREE.Mesh(geo,new THREE.MeshStandardMaterial({color:neonColor,metalness:.35,roughness:.24,emissive:neonColor,emissiveIntensity:.45}));
+  mesh.name='Testo3D_'+(++serial);mesh.userData.w3dObject=true;mesh.position.y=1;scene.add(mesh);objects.push(mesh);select(mesh);refreshList();
+ },undefined,()=>alert('Font non caricato: controlla la connessione Internet.'));
+};
+// Neon realtime: emissività e punto luce colorato (senza bloom/post-processing).
+function applyNeon(o){if(!o)return;o.traverse(node=>{if(!node.material)return;const mats=Array.isArray(node.material)?node.material:[node.material];mats.forEach(m=>{if(m.emissive){m.emissive.set(neonColor);m.emissiveIntensity=neonPower}else if(m.color)m.color.set(neonColor)})});if(!o.userData.neonLight){const l=new THREE.PointLight(neonColor,Math.max(1,neonPower*2),7);o.add(l);l.position.set(0,.5,0);o.userData.neonLight=l}else{o.userData.neonLight.color.set(neonColor);o.userData.neonLight.intensity=Math.max(1,neonPower*2)}}
+document.querySelector('#neonBtn').onclick=()=>{if(!selected){alert('Seleziona prima un oggetto.');return}applyNeon(selected)};
+document.querySelector('#neonColor').oninput=e=>{neonColor=e.target.value;if(selected)applyNeon(selected)};
+document.querySelector('#neonPower').oninput=e=>{neonPower=+e.target.value;if(selected&&selected.userData.neonLight)applyNeon(selected)};
+// Sistema di particelle animate THREE.Points, con quantità configurabile per dispositivi mobili.
+function createParticles(){const count=+document.querySelector('#particleCount').value,pos=new Float32Array(count*3),vel=new Float32Array(count);
+ for(let i=0;i<count;i++){pos[i*3]=(Math.random()-.5)*12;pos[i*3+1]=Math.random()*7;pos[i*3+2]=(Math.random()-.5)*12;vel[i]=.25+Math.random()*.8}
+ const geo=new THREE.BufferGeometry();geo.setAttribute('position',new THREE.BufferAttribute(pos,3));
+ const mat=new THREE.PointsMaterial({color:neonColor,size:.055,transparent:true,opacity:.9,blending:THREE.AdditiveBlending,depthWrite:false});
+ const pts=new THREE.Points(geo,mat);pts.userData.w3dObject=true;pts.name='Particelle_'+(++serial);pts.userData.velocities=vel;scene.add(pts);objects.push(pts);particleSystems.push(pts);select(pts);refreshList();}
+document.querySelector('#particlesBtn').onclick=createParticles;document.querySelector('#addParticles').onclick=createParticles;
+// Keyframe telecamera indipendenti da quelli degli oggetti.
+document.querySelector('#cameraKeyBtn').onclick=()=>{const t=+document.querySelector('#timeRange').value;cameraKeys.push({t,p:camera.position.clone(),q:camera.quaternion.clone(),target:orbit.target.clone()});cameraKeys.sort((a,b)=>a.t-b.t);alert('Keyframe camera salvato a '+t.toFixed(1)+' s')};
+function applyCameraTime(t){if(!cameraKeys.length)return;let a=cameraKeys[0],b=cameraKeys[cameraKeys.length-1];for(let i=0;i<cameraKeys.length-1;i++)if(t>=cameraKeys[i].t&&t<=cameraKeys[i+1].t){a=cameraKeys[i];b=cameraKeys[i+1];break}const f=a===b?0:THREE.MathUtils.clamp((t-a.t)/(b.t-a.t),0,1);camera.position.lerpVectors(a.p,b.p,f);camera.quaternion.copy(a.q).slerp(b.q,f);orbit.target.lerpVectors(a.target,b.target,f);orbit.update();}
+
+// Progetti .w3d: scena completa, camera e keyframe salvati in un unico file locale.
+function download(blob,name){const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1500)}
+function packKeyframes(){return [...keys.entries()].map(([uuid,arr])=>[uuid,arr.map(k=>({t:k.t,p:k.p.toArray(),r:k.r.toArray(),s:k.s.toArray()}))]);}
+document.querySelector('#projectSaveBtn').onclick=()=>{
+ try{
+  const project={format:'WORLD3D',version:2,scene:objects.map(o=>o.toJSON()),camera:{position:camera.position.toArray(),quaternion:camera.quaternion.toArray(),target:orbit.target.toArray()},background:scene.background?.getStyle?.()||'#182238',gridVisible:grid.visible,serial,keys:packKeyframes(),cameraKeys:cameraKeys.map(k=>({t:k.t,p:k.p.toArray(),q:k.q.toArray(),target:k.target.toArray()}))};
+  const blob=new Blob([JSON.stringify(project)],{type:'application/json'});download(blob,'world-3d-progetto.w3d');
+  document.querySelector('#selectionLabel').textContent='Progetto salvato';
+ }catch(err){console.error(err);alert('Salvataggio progetto non riuscito: '+err.message)}
+};
+document.querySelector('#projectOpenBtn').onclick=()=>document.querySelector('#projectInput').click();
+document.querySelector('#projectInput').onchange=async e=>{
+ const file=e.target.files[0];if(!file)return;
+ try{
+  const project=JSON.parse(await file.text());if(project.format!=='WORLD3D'||!Array.isArray(project.scene))throw new Error('File progetto non valido');
+  const loader=new THREE.ObjectLoader();const loaded=project.scene.map(data=>loader.parse(data));
+  objects.forEach(o=>scene.remove(o));objects=[];particleSystems=[];keys.clear();select(null);
+  loaded.forEach(o=>{o.userData.w3dObject=true;scene.add(o);objects.push(o);if(o.isPoints&&o.userData.velocities)particleSystems.push(o)});
+  (project.keys||[]).forEach(([uuid,arr])=>keys.set(uuid,arr.map(k=>({t:k.t,p:new THREE.Vector3(...k.p),r:new THREE.Euler(...k.r),s:new THREE.Vector3(...k.s)}))));
+  cameraKeys=(project.cameraKeys||[]).map(k=>({t:k.t,p:new THREE.Vector3(...k.p),q:new THREE.Quaternion(...k.q),target:new THREE.Vector3(...k.target)}));
+  if(project.camera){camera.position.fromArray(project.camera.position);camera.quaternion.fromArray(project.camera.quaternion);orbit.target.fromArray(project.camera.target);orbit.update()}
+  if(project.background)scene.background=new THREE.Color(project.background);grid.visible=project.gridVisible!==false;serial=project.serial||objects.length;refreshList();select(objects[0]||null);
+  document.querySelector('#selectionLabel').textContent='Progetto caricato';
+ }catch(err){console.error(err);alert('Impossibile aprire il progetto: '+err.message)}
+ e.target.value='';
+};
+
+document.querySelector('#saveBtn').onclick=()=>{new GLTFExporter().parse(scene,result=>{const blob=new Blob([result],{type:'model/gltf-binary'});download(blob,'world-3d-studio.glb')},err=>alert('Esportazione non riuscita: '+err),{binary:true})};
+document.querySelector('#pngBtn').onclick=()=>{renderer.render(scene,camera);const a=document.createElement('a');a.href=renderer.domElement.toDataURL('image/png');a.download='world-3d-render.png';a.click()};
+document.querySelector('#recordBtn').onclick=()=>{if(!canvas.captureStream||!window.MediaRecorder){alert('Registrazione video non supportata da questo browser.');return}if(recording){mediaRecorder.stop();recording=false;document.querySelector('#recordBtn').textContent='● Registra video';return}chunks=[];const stream=canvas.captureStream(30);let mime=MediaRecorder.isTypeSupported('video/webm;codecs=vp9')?'video/webm;codecs=vp9':'video/webm';mediaRecorder=new MediaRecorder(stream,{mimeType:mime});mediaRecorder.ondataavailable=e=>{if(e.data.size)chunks.push(e.data)};mediaRecorder.onstop=()=>download(new Blob(chunks,{type:'video/webm'}),'world-3d-animation.webm');mediaRecorder.start();recording=true;document.querySelector('#recordBtn').textContent='■ Ferma video'};
+function animate(now){requestAnimationFrame(animate);if(playing){let t=(now-startTime)/1000;if(t>10){t=10;playing=false;document.querySelector('#playBtn').textContent='▶ Play'}document.querySelector('#timeRange').value=t;document.querySelector('#timeLabel').textContent=t.toFixed(1)+' s';applyTime(t)}particleSystems.forEach(pts=>{const a=pts.geometry.attributes.position,vel=pts.userData.velocities;for(let i=0;i<a.count;i++){let y=a.getY(i)+vel[i]*.008;if(y>7)y=-.2;a.setY(i,y)}a.needsUpdate=true});orbit.update();renderer.render(scene,camera)}
+addObject('box');animate(0);
+</script>
+</body>
+</html>
