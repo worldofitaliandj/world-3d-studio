@@ -2,7 +2,7 @@
 <html lang="it">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<meta name="theme-color" content="#090d18"><title>WORLD 3D STUDIO V3 — 3D Creation Suite</title>
+<meta name="theme-color" content="#090d18"><title>WORLD 3D STUDIO V3.5 — 3D Creation Suite</title>
 <style>
 :root{color-scheme:dark;--bg:#090d18;--panel:#111827;--panel2:#172235;--line:#29384f;--text:#edf4ff;--muted:#91a2bb;--cyan:#37d7ff;--violet:#9b7cff;--green:#44e0a1;--danger:#ff6682}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:14px system-ui,-apple-system,Segoe UI,Roboto,sans-serif;overflow:hidden}button,input,select{font:inherit}button{border:1px solid var(--line);background:#1a2940;color:var(--text);padding:9px 11px;border-radius:9px;cursor:pointer}button:active{transform:scale(.98)}button.primary{background:linear-gradient(120deg,#087fa9,#6046bd);border:0}button.active{border-color:var(--cyan);color:var(--cyan)}button.danger{border-color:#743347;color:#ff9aac}.app{height:100dvh;display:grid;grid-template-rows:54px 1fr 178px}.top{display:flex;align-items:center;gap:10px;padding:0 14px;border-bottom:1px solid var(--line);background:#0d1422}.brand{font-weight:850;letter-spacing:.7px;font-size:15px}.brand span{color:var(--cyan)}.status{color:var(--muted);font-size:12px;margin-left:auto}.main{min-height:0;display:grid;grid-template-columns:230px 1fr 260px}.side{background:var(--panel);overflow:auto;padding:12px;border-right:1px solid var(--line)}.right{border-right:0;border-left:1px solid var(--line)}.section{border:1px solid var(--line);background:#0e1726;border-radius:12px;padding:10px;margin-bottom:11px}.section h3{margin:0 0 9px;font-size:12px;text-transform:uppercase;letter-spacing:.8px;color:#b8c9e2}.btnrow{display:flex;flex-wrap:wrap;gap:6px}.btnrow button{flex:1;min-width:68px}.small{font-size:11px;color:var(--muted);line-height:1.45}.stage{position:relative;min-width:0;min-height:0;background:radial-gradient(ellipse at center,#18283d,#080d16 72%)}#viewport{width:100%;height:100%;display:block;touch-action:none}.stagebar{position:absolute;top:10px;left:10px;right:10px;display:flex;gap:7px;flex-wrap:wrap;pointer-events:none}.stagebar>*{pointer-events:auto}.pill{background:#0b1423dc;border:1px solid var(--line);padding:7px 10px;border-radius:99px;font-size:11px;color:#b8c9e2}.drop{border:1px dashed #45617e;padding:12px;border-radius:10px;text-align:center;color:var(--muted);font-size:12px}.field{display:grid;grid-template-columns:1fr 82px;gap:8px;align-items:center;margin:8px 0}.field label{font-size:12px;color:#b7c6dc}.field input[type=range]{width:100%;accent-color:var(--cyan)}.field input[type=number],.field input[type=text],select{width:100%;background:#09111e;border:1px solid var(--line);color:var(--text);padding:6px;border-radius:7px}.field input[type=color]{width:100%;height:30px;border:0;background:transparent}.assetlist{font-size:12px;color:var(--muted);max-height:110px;overflow:auto}.assetlist div{padding:5px;border-bottom:1px solid #1c2a3d;cursor:pointer}.assetlist div.sel{color:var(--cyan)}.bottom{border-top:1px solid var(--line);background:#0d1422;padding:10px 12px;display:grid;grid-template-rows:auto 1fr;gap:8px;min-height:0}.transport{display:flex;align-items:center;gap:7px;flex-wrap:wrap}.transport input[type=file]{display:none}.transport label{font-size:12px;color:var(--muted)}.track{min-height:0;display:grid;grid-template-columns:145px 1fr;gap:10px}.waveinfo{font-size:11px;color:var(--muted);line-height:1.5}.timeline{border:1px solid var(--line);border-radius:9px;position:relative;overflow:hidden;background:repeating-linear-gradient(90deg,#111d2d 0,#111d2d 1px,transparent 1px,transparent 5%)}.playhead{position:absolute;top:0;bottom:0;width:2px;background:var(--cyan);left:0;pointer-events:none}.keyrow{position:absolute;left:8px;right:8px;top:12px;height:25px;border-bottom:1px solid #31425b}.key{position:absolute;top:5px;width:9px;height:9px;background:var(--violet);transform:rotate(45deg);border-radius:2px}.meter{height:6px;background:#26364b;border-radius:8px;overflow:hidden;margin-top:6px}.meter i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--cyan),var(--violet))}.hide{display:none!important}.hint{color:#ffd68b}.filebtn{display:inline-block}.footer-note{font-size:10px;color:#71839d;margin-top:7px}.toolgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}.toolgrid button{min-width:0}.section .subhead{font-size:10px;color:var(--cyan);letter-spacing:.7px;margin:10px 0 5px}.colorpair{display:grid;grid-template-columns:1fr 1fr;gap:8px}.colorpair label{font-size:11px;color:var(--muted)}.colorpair input{width:100%;height:30px;background:transparent;border:0}
 @media(max-width:850px){.app{grid-template-rows:50px 1fr 190px}.main{grid-template-columns:150px 1fr}.right{display:none}.side{padding:8px}.brand{font-size:12px}.stagebar{top:6px;left:6px}.bottom{padding:8px}.track{grid-template-columns:95px 1fr}.transport button{padding:7px 8px;font-size:12px}}@media(max-width:560px){.main{grid-template-columns:112px 1fr}.side{padding:6px}.section{padding:7px;margin-bottom:7px}.section h3{font-size:10px}.btnrow{gap:4px}.btnrow button{min-width:0;padding:7px 4px;font-size:11px}.small{font-size:10px}.top{padding:0 8px}.status{font-size:10px}.app{grid-template-rows:46px 1fr 190px}}
@@ -18,8 +18,7 @@
  <section class="section"><h3>Strumenti di trasformazione</h3><div class="toolgrid"><button id="moveTool">↔ Sposta</button><button id="rotateTool">⟳ Ruota</button><button id="scaleTool">↗ Scala</button><button id="duplicateObj">Duplica</button><button id="frameObj">Inquadra</button><button id="mirrorObj">Specchia X</button></div><p class="small">Seleziona un oggetto e usa i manipolatori 3D per modificarlo direttamente nella scena.</p></section>
  <section class="section"><h3>Modellazione mesh · Edit Mode</h3><div class="btnrow"><button id="meshEditBtn" class="primary">✎ Modifica mesh</button><button id="meshEditExitBtn" disabled>Esci modalità</button></div><div class="small" id="meshEditInfo">Seleziona una mesh (ad esempio un cubo) e attiva Modifica mesh. Potrai selezionare e spostare i singoli vertici.</div><div id="vertexEditor" class="hide"><div class="small" style="color:var(--cyan);margin:8px 0 4px">VERTICE SELEZIONATO</div><div class="field"><label>Vertice</label><input id="vertexIndex" type="text" readonly value="—"></div><div class="field"><label>Coordinata X</label><input id="vertexX" type="number" step="0.05"></div><div class="field"><label>Coordinata Y</label><input id="vertexY" type="number" step="0.05"></div><div class="field"><label>Coordinata Z</label><input id="vertexZ" type="number" step="0.05"></div><button id="applyVertexBtn" style="width:100%" disabled>Applica posizione vertice</button><p class="small">La modifica aggiorna direttamente la geometria della mesh. Per ora è disponibile la selezione e modifica dei vertici; strumenti bordi/facce, estrusione e bevel arriveranno in passaggi successivi.</p></div></section>
  <section class="section"><h3>Importa</h3><div class="btnrow"><button id="imgBtn">Foto / texture</button><button id="modelBtn">Modello 3D</button></div><input id="imgFile" type="file" accept="image/*" class="hide"><input id="modelFile" type="file" accept=".glb,.gltf,model/gltf-binary,model/gltf+json" class="hide"><p class="small">Foto: crea un pannello 3D. GLB/GLTF: importa modelli e animazioni incluse.</p></section>
- <section class="section"><h3>Character Studio</h3><label class="small">Stile personaggio</label><select id="charStyle" style="width:100%;margin:5px 0 8px;background:#09111e;color:var(--text);border:1px solid var(--line);padding:7px;border-radius:7px"><option value="cinema">Cinema 3D · stile video</option><option value="anime">Anime 3D</option><option value="real">Realistico stilizzato</option><option value="biomech">Biomeccanico cinematografico · stile Anyma</option></select><button id="createCharacter" class="primary" style="width:100%">＋ Crea personaggio 3D</button><div class="btnrow" style="margin-top:7px"><button id="danceCharacter">▶ Danza</button><button id="poseCharacter">Posa</button></div><p class="small">Personaggi articolati. Lo stile biomeccanico aggiunge armatura, metallo, dettagli luminosi e nucleo energetico; la danza reagisce alla musica.</p></section>
- <section class="section"><h3>Character Customizer</h3><div class="field"><label>Altezza</label><input id="charHeight" type="range" min=".65" max="1.5" step=".01" value="1"></div><div class="field"><label>Testa</label><input id="charHead" type="range" min=".75" max="1.45" step=".01" value="1"></div><div class="field"><label>Spalle</label><input id="charShoulders" type="range" min=".7" max="1.5" step=".01" value="1"></div><div class="field"><label>Lunghezza gambe</label><input id="charLegs" type="range" min=".7" max="1.4" step=".01" value="1"></div><div class="colorpair"><label>Pelle<input id="charSkin" type="color" value="#d6a27e"></label><label>Capelli<input id="charHair" type="color" value="#29202a"></label><label>Abiti<input id="charClothes" type="color" value="#23a9b8"></label><label>Pantaloni<input id="charPants" type="color" value="#26384d"></label></div><p class="small">Seleziona un personaggio creato per applicare le modifiche.</p></section>
+ <section class="section"><h3>Character Creator · realistico</h3><p class="small">Per creare veri esseri umani 3D con anatomia, volti, pelle fotografica, capelli, vestiti, rig e animazioni, apri il generatore dedicato. È gratuito e funziona nel browser; al termine esporta il personaggio in GLB e importalo qui.</p><button id="openHumanCreator" class="primary" style="width:100%">✦ Apri Character Creator realistico</button><button id="importHumanGLB" style="width:100%;margin-top:7px">＋ Importa personaggio GLB</button><div class="btnrow" style="margin-top:7px"><button id="applyAnymaLook">Applica palette Anyma</button><button id="restoreAnymaLook">Ripristina materiali</button></div><p class="small">Palette Anyma: argento, titanio chiaro, bianco perla e riflessi freddi. Modifica i materiali del modello selezionato; non altera la geometria o il rig.</p><details style="margin-top:9px"><summary class="small" style="cursor:pointer">Strumenti personaggio procedurale precedente (legacy)</summary><label class="small">Stile</label><select id="charStyle" style="width:100%;margin:5px 0 8px;background:#09111e;color:var(--text);border:1px solid var(--line);padding:7px;border-radius:7px"><option value="cinema">Cinema 3D · stile video</option><option value="anime">Anime 3D</option><option value="real">Realistico stilizzato</option><option value="biomech">Umanoide biomeccanico semplice</option></select><button id="createCharacterLegacy" style="width:100%">Crea personaggio semplice (legacy)</button><div class="btnrow" style="margin-top:7px"><button id="danceCharacter">▶ Danza</button><button id="poseCharacter">Posa</button></div><div class="field"><label>Altezza</label><input id="charHeight" type="range" min=".65" max="1.5" step=".01" value="1"></div><div class="field"><label>Testa</label><input id="charHead" type="range" min=".75" max="1.45" step=".01" value="1"></div><div class="field"><label>Spalle</label><input id="charShoulders" type="range" min=".7" max="1.5" step=".01" value="1"></div><div class="field"><label>Lunghezza gambe</label><input id="charLegs" type="range" min=".7" max="1.4" step=".01" value="1"></div><div class="colorpair"><label>Pelle<input id="charSkin" type="color" value="#d6a27e"></label><label>Capelli<input id="charHair" type="color" value="#29202a"></label><label>Abiti<input id="charClothes" type="color" value="#23a9b8"></label><label>Pantaloni<input id="charPants" type="color" value="#26384d"></label></div></details><p class="small" style="margin-top:8px">Generatore esterno: Ara 3D Gen. I personaggi importati restano oggetti GLB normali nella tua scena WORLD 3D STUDIO.</p></section>
  <section class="section"><h3>Photo to Animation</h3><label class="small">Movimento della foto</label><select id="photoMotion" style="width:100%;margin:5px 0 8px;background:#09111e;color:var(--text);border:1px solid var(--line);padding:7px;border-radius:7px"><option value="cinematic">Cinematografico</option><option value="float">Fluttuazione</option><option value="zoom">Zoom pulsante</option><option value="sway">Oscillazione</option></select><div class="field"><label>Intensità</label><input id="photoIntensity" type="range" min="0" max="2" step=".05" value=".8"></div><button id="animatePhoto" style="width:100%">Attiva animazione foto</button><p class="small">Anima foto come pannelli 2.5D con zoom, movimento e reazione musicale. Non ricostruisce automaticamente volto o corpo da una singola foto.</p></section>
  <section class="section"><h3>Scena</h3><div class="btnrow"><button id="addLight">Aggiungi luce</button><button id="addFX">＋ Particelle</button><button id="deleteObj" class="danger">Elimina selezionato</button></div><div class="assetlist" id="objectList">Nessun oggetto</div></section>
  <section class="section"><h3>Materiali rapidi</h3><div class="toolgrid"><button data-material="chrome">Cromo</button><button data-material="gold">Oro</button><button data-material="glass">Vetro</button><button data-material="matte">Opaco</button><button data-material="neon">Neon</button><button data-material="plastic">Plastica</button></div><p class="small">Applica un materiale all'oggetto selezionato.</p></section>
@@ -39,7 +38,7 @@
  </div></section>
  <section class="section"><h3>Animazioni</h3><div class="btnrow"><button id="addKey">◆ Keyframe</button><button id="playAnim">▶ Play</button></div><p class="small">Aggiungi keyframe all'oggetto selezionato. I modelli GLB possono riprodurre le animazioni già contenute nel file.</p><div id="keyInfo" class="small">0 keyframe</div></section>
  <section class="section"><h3>Esporta</h3><div class="btnrow"><button id="pngBtn">Immagine PNG</button><button id="glbBtn">Modello GLB</button><button id="saveProjectBtn">Salva progetto</button><button id="openProjectBtn">Apri progetto</button><input id="projectFile" type="file" accept=".json,application/json" class="hide"></div><button id="recordBtn" class="primary" style="width:100%;margin-top:7px">● Registra video + audio</button><button id="downloadVideoBtn" style="width:100%;margin-top:7px" disabled>⬇ Scarica video</button><div class="small" id="videoExportInfo">Dopo la registrazione potrai scaricare il video qui. MP4 se supportato dal browser, altrimenti WebM.</div></section>
- <p class="footer-note">WORLD 3D STUDIO V3.2 · File singolo HTML · Three.js via CDN. Personaggi procedurali articolati e foto animate 2.5D; animazione facciale generativa da foto richiede un motore AI esterno.</p>
+ <p class="footer-note">WORLD 3D STUDIO V3.5 · File singolo HTML · Three.js via CDN. Personaggi procedurali articolati e foto animate 2.5D; animazione facciale generativa da foto richiede un motore AI esterno.</p>
 </aside>
 </main>
 <footer class="bottom">
@@ -55,7 +54,7 @@ import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 import {GLTFExporter} from 'three/addons/exporters/GLTFExporter.js';
 import {TransformControls} from 'three/addons/controls/TransformControls.js';
 const $=id=>document.getElementById(id);const canvas=$('viewport');
-let renderer,scene,camera,controls,transformControls,selected=null,objects=[],mixers=[],clock=new THREE.Clock(),raycaster=new THREE.Raycaster(),pointer=new THREE.Vector2();let meshEditMode=false,editMesh=null,editPoints=null,activeVertex=-1;let audioCtx,analyser,sourceNode,mediaDest,frequencyData,low=0,mid=0,high=0,energy=0,lastBeat=0,beatPulse=0,audioURL=null,recording=null,recordChunks=[],recordedVideoBlob=null,recordedVideoName="world-3d-studio-video.webm",recordingMime="video/webm",keys=[],animPlaying=false,animStart=0,baseTransforms=new WeakMap(),characterDance=false,photoMotionOn=true;
+let renderer,scene,camera,controls,transformControls,selected=null,objects=[],mixers=[],anymaMaterialBackup=new WeakMap(),clock=new THREE.Clock(),raycaster=new THREE.Raycaster(),pointer=new THREE.Vector2();let meshEditMode=false,editMesh=null,editPoints=null,activeVertex=-1;let audioCtx,analyser,sourceNode,mediaDest,frequencyData,low=0,mid=0,high=0,energy=0,lastBeat=0,beatPulse=0,audioURL=null,recording=null,recordChunks=[],recordedVideoBlob=null,recordedVideoName="world-3d-studio-video.webm",recordingMime="video/webm",keys=[],animPlaying=false,animStart=0,baseTransforms=new WeakMap(),characterDance=false,photoMotionOn=true;
 const status=t=>$('status').textContent=t;
 try{
  renderer=new THREE.WebGLRenderer({canvas,antialias:true,preserveDrawingBuffer:true});renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.setSize(canvas.clientWidth,canvas.clientHeight,false);renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;
@@ -97,50 +96,144 @@ $('imgFile').onchange=async e=>{const f=e.target.files[0];if(!f)return;const url
 $('modelFile').onchange=e=>{const f=e.target.files[0];if(!f)return;const url=URL.createObjectURL(f);new GLTFLoader().load(url,g=>{const root=g.scene;root.name=f.name;root.position.set(0,0,0);scene.add(root);registerObject(root);selectObject(root);if(g.animations?.length){const mixer=new THREE.AnimationMixer(root);g.animations.forEach(clip=>mixer.clipAction(clip).play());mixers.push(mixer)}status('Modello importato'+(g.animations?.length?' · animazioni GLB attive':''));URL.revokeObjectURL(url)},undefined,err=>{status('Errore importazione modello');console.error(err)});e.target.value=''};
 function makeMat(color,metalness=.05,roughness=.72){return new THREE.MeshStandardMaterial({color,metalness,roughness})}
 function createCharacter(){
- const style=$('charStyle').value,group=new THREE.Group();group.name='Personaggio 3D '+(objects.filter(o=>o.userData.isCharacter).length+1);
- const palettes=style==='anime'?{skin:0xffd2b8,hair:0x20243c,shirt:0x4e8cff,pants:0x26385f,shoe:0xf5f5f5,eye:0x172b58}:{skin:0xd6a27e,hair:0x29202a,shirt:0x23a9b8,pants:0x26384d,shoe:0x151a25,eye:0x20242b};
+ const style=$('charStyle').value,group=new THREE.Group();
+ group.name='Android umanoide cinematografico '+(objects.filter(o=>o.userData.isCharacter).length+1);
+ const biomech=style==='biomech';
+ const palettes=style==='anime'?{skin:0xffd2b8,hair:0x20243c,shirt:0x4e8cff,pants:0x26385f,shoe:0xf5f5f5,eye:0x172b58}:{skin:0xb9c2c9,hair:0x111923,shirt:0x263646,pants:0x172433,shoe:0x101923,eye:0x9af4ff};
  if(style==='real'){palettes.skin=0xc58e6b;palettes.shirt=0x343b50;palettes.hair=0x171717;}
- if(style==='biomech'){palettes.skin=0x9babb8;palettes.hair=0x101722;palettes.shirt=0x263344;palettes.pants=0x172333;palettes.shoe=0x101722;palettes.eye=0x62eaff;}
- const skin=makeMat(palettes.skin,style==='biomech'?.28:.02,style==='biomech'?.34:.72),hair=makeMat(palettes.hair,.18,.48),shirt=makeMat(palettes.shirt,style==='biomech'?.72:.15,style==='biomech'?.3:.48),pants=makeMat(palettes.pants,style==='biomech'?.68:.08,style==='biomech'?.38:.72),shoe=makeMat(palettes.shoe,.35,.42),eye=style==='biomech'?new THREE.MeshStandardMaterial({color:0x8df5ff,emissive:0x13bde8,emissiveIntensity:2.4,metalness:.2,roughness:.18}):makeMat(palettes.eye),white=makeMat(0xffffff),mouth=makeMat(0x6d2634);
- const armor=makeMat(0x526b80,.88,.24),darkMetal=makeMat(0x111d2b,.82,.3),glow=new THREE.MeshStandardMaterial({color:0x8af5ff,emissive:0x20cfff,emissiveIntensity:2.8,metalness:.25,roughness:.18});
- function ball(parent,mat,pos,scale,seg=24){const m=new THREE.Mesh(new THREE.SphereGeometry(1,seg,Math.max(12,seg>>1)),mat);m.position.set(...pos);m.scale.set(...scale);parent.add(m);return m}
- function limb(parent,mat,len,rad){const m=new THREE.Mesh(new THREE.CapsuleGeometry(rad,Math.max(.05,len-rad*2),5,12),mat);m.position.y=-len/2;parent.add(m);return m}
- // pelvis and torso
- ball(group,pants,[0,1.02,0],[.34,.28,.22]);const torso=new THREE.Mesh(new THREE.CapsuleGeometry(.34,.55,6,18),shirt);torso.position.y=1.62;group.add(torso);
- const neck=ball(group,skin,[0,2.03,0],[.12,.18,.12]);
- const headPivot=new THREE.Group();headPivot.position.set(0,2.18,0);group.add(headPivot);ball(headPivot,skin,[0,.22,0],[.29,.36,.26],32);
- // hair cap + fringe
- ball(headPivot,hair,[0,.43,-.015],[.30,.20,.27],24);ball(headPivot,hair,[0,.32,.225],[.28,.10,.08],20);
- for(const x of [-.105,.105]){ball(headPivot,white,[x,.23,.232],[.065,.075,.035],16);ball(headPivot,eye,[x,.225,.263],[.032,.045,.018],16)}
- ball(headPivot,mouth,[0,.075,.258],[.075,.018,.018],16);ball(headPivot,skin,[0,.16,.27],[.035,.045,.035],12);
- // articulated arms
- const arms=[];for(const side of [-1,1]){const pivot=new THREE.Group();pivot.position.set(side*.39,1.88,0);group.add(pivot);limb(pivot,shirt,.42,.105);ball(pivot,skin,[0,-.43,0],[.09,.09,.09]);const fore=new THREE.Group();fore.position.y=-.43;pivot.add(fore);limb(fore,skin,.38,.075);ball(fore,skin,[0,-.40,.015],[.085,.10,.07]);arms.push({pivot,fore,side})}
- const legs=[];for(const side of [-1,1]){const pivot=new THREE.Group();pivot.position.set(side*.17,.93,0);group.add(pivot);limb(pivot,pants,.53,.14);const knee=new THREE.Group();knee.position.y=-.52;pivot.add(knee);limb(knee,pants,.48,.115);const foot=ball(knee,shoe,[0,-.50,.10],[.13,.09,.24]);legs.push({pivot,knee,side})}
- // Original biomechanical character details: layered armor, articulated plates and luminous energy channels.
- const biomechParts=[];
- if(style==='biomech'){
-  const plate=(parent,geo,mat,pos,rot)=>{const q=new THREE.Mesh(geo,mat);q.position.set(...pos);if(rot)q.rotation.set(...rot);parent.add(q);biomechParts.push(q);return q};
-  // Chest armor and central reactor
-  plate(group,new THREE.SphereGeometry(1,24,16),armor,[0,1.68,.205],[0,0,0]).scale.set(.34, .43, .16);
-  const chest=group.children[group.children.length-1];chest.scale.set(.34, .43, .16);
-  plate(group,new THREE.SphereGeometry(1,20,14),darkMetal,[0,1.67,.34]).scale.set(.19,.27,.055);
-  plate(group,new THREE.SphereGeometry(1,24,16),glow,[0,1.69,.405]).scale.set(.075,.12,.025);
-  // Collar, shoulder shells, forearm and thigh armor
-  plate(group,new THREE.TorusGeometry(.17,.035,8,24),glow,[0,2.04,.02],[Math.PI/2,0,0]).scale.set(1,.72,1);
-  for(const side of [-1,1]){
-   plate(group,new THREE.SphereGeometry(1,18,12),armor,[side*.43,1.88,.015]).scale.set(.18,.14,.20);
-   plate(group,new THREE.BoxGeometry(.16,.34,.17),darkMetal,[side*.405,1.54,.10],[0,0,side*-.10]);
-   plate(group,new THREE.BoxGeometry(.13,.28,.13),armor,[side*.18,.63,.11]);
-   plate(group,new THREE.SphereGeometry(1,16,12),glow,[side*.18,.91,.14]).scale.set(.045,.055,.025);
-  }
-  // Segmented luminous spine and small mechanical details
-  for(let i=0;i<7;i++){const y=1.12+i*.125;plate(group,new THREE.SphereGeometry(1,12,8),darkMetal,[0,y,-.225]).scale.set(.075,.047,.045);if(i%2===0)plate(group,new THREE.SphereGeometry(1,10,8),glow,[0,y,-.267]).scale.set(.018,.025,.012)}
-  for(let side of [-1,1]){plate(headPivot,new THREE.SphereGeometry(1,16,12),darkMetal,[side*.245,.22,.015]).scale.set(.055,.14,.11);plate(headPivot,new THREE.BoxGeometry(.035,.19,.045),glow,[side*.265,.22,.105],[0,0,side*-.18])}
-  group.userData.biomech=true;group.userData.biomechMaterials={armor,darkMetal,glow};
+ const skin=makeMat(palettes.skin,biomech?.42:.02,biomech?.3:.68),hair=makeMat(palettes.hair,.28,.38),shirt=makeMat(palettes.shirt,biomech?.82:.15,biomech?.24:.48),pants=makeMat(palettes.pants,biomech?.78:.08,biomech?.28:.72),shoe=makeMat(palettes.shoe,.55,.3),eye=biomech?new THREE.MeshStandardMaterial({color:0xb8fbff,emissive:0x23dfff,emissiveIntensity:3.5,metalness:.25,roughness:.12}):makeMat(palettes.eye),white=makeMat(0xe8f2f8),mouth=makeMat(0x111821,.35,.3);
+ const armor=new THREE.MeshStandardMaterial({color:0x71869a,metalness:.94,roughness:.2}),darkMetal=new THREE.MeshStandardMaterial({color:0x111c29,metalness:.88,roughness:.27}),edgeMetal=new THREE.MeshStandardMaterial({color:0xb8c7d5,metalness:1,roughness:.14}),glow=new THREE.MeshStandardMaterial({color:0x9af7ff,emissive:0x22dfff,emissiveIntensity:3.2,metalness:.25,roughness:.13});
+ const detailMat=new THREE.MeshStandardMaterial({color:0x263849,metalness:.85,roughness:.32});
+ const sphere=(parent,mat,pos,scale,seg=32)=>{const m=new THREE.Mesh(new THREE.SphereGeometry(1,seg,Math.max(16,seg>>1)),mat);m.position.set(...pos);m.scale.set(...scale);parent.add(m);return m};
+ const box=(parent,mat,pos,size,rot=[0,0,0],bevel=.04)=>{const g=new THREE.BoxGeometry(...size);const m=new THREE.Mesh(g,mat);m.position.set(...pos);m.rotation.set(...rot);parent.add(m);return m};
+ const capsule=(parent,mat,len,rad,pos=[0,0,0])=>{const m=new THREE.Mesh(new THREE.CapsuleGeometry(rad,Math.max(.04,len-rad*2),8,20),mat);m.position.set(...pos);parent.add(m);return m};
+ const ring=(parent,mat,pos,r,t,rot=[0,0,0])=>{const m=new THREE.Mesh(new THREE.TorusGeometry(r,t,12,40),mat);m.position.set(...pos);m.rotation.set(...rot);parent.add(m);return m};
+ // Full-height humanoid proportions: long legs, broad shoulders, narrow waist and articulated joints.
+ sphere(group,pants,[0,1.68,0],[.34,.28,.23]);
+ const torso=new THREE.Group();torso.position.set(0,2.27,0);group.add(torso);
+ sphere(torso,shirt,[0,0,0],[.43,.62,.25],40);
+ sphere(torso,shirt,[0,.35,0],[.49,.31,.27],40);
+ sphere(torso,pants,[0,-.48,0],[.32,.23,.22],32);
+ const neck=sphere(group,skin,[0,2.91,0],[.13,.19,.13]);
+ const headPivot=new THREE.Group();headPivot.position.set(0,3.03,0);group.add(headPivot);
+ // Face and skull: defined jaw, cheekbones, brow, nose and mouth rather than a small featureless ball.
+ sphere(headPivot,skin,[0,.25,0],[.255,.36,.235],40);
+ sphere(headPivot,skin,[0,.08,.105],[.215,.19,.18],32);
+ sphere(headPivot,skin,[0,.19,.204],[.205,.22,.07],32);
+ sphere(headPivot,skin,[0,.015,.20],[.16,.105,.085],28);
+ sphere(headPivot,hair,[0,.48,-.018],[.27,.19,.25],32);
+ sphere(headPivot,hair,[0,.39,.18],[.245,.09,.09],28);
+ for(const side of [-1,1]){
+  sphere(headPivot,skin,[side*.245,.23,.005],[.055,.105,.075],20);
+  sphere(headPivot,darkMetal,[side*.105,.275,.222],[.083,.105,.045],24);
+  sphere(headPivot,eye,[side*.105,.275,.26],[.047,.065,.025],24);
+  sphere(headPivot,glow,[side*.105,.275,.282],[.018,.027,.012],16);
+  sphere(headPivot,skin,[side*.105,.385,.205],[.09,.035,.05],20);
  }
- group.position.set((Math.random()-.5)*1.4,0,(Math.random()-.5)*1.2);group.userData.isCharacter=true;group.userData.rig={headPivot,arms,legs,baseY:group.position.y};group.userData.charMaterials={skin,hair,shirt,pants};group.userData.charBase={scale:group.scale.clone()};scene.add(group);registerObject(group);selectObject(group);status(style==='biomech'?'Personaggio biomeccanico creato · armatura e nucleo luminoso':'Personaggio articolato creato');return group;
+ sphere(headPivot,skin,[0,.19,.277],[.035,.075,.045],20);
+ sphere(headPivot,darkMetal,[0,.035,.274],[.09,.018,.014],20);
+ // articulated arms, hands and five-finger silhouettes
+ const arms=[];
+ for(const side of [-1,1]){
+  const shoulder=new THREE.Group();shoulder.position.set(side*.49,2.67,0);group.add(shoulder);
+  sphere(shoulder,armor,[0,0,0],[.22,.20,.23]);
+  capsule(shoulder,shirt,.62,.115,[0,-.36,0]);
+  sphere(shoulder,darkMetal,[0,-.68,0],[.13,.13,.13]);
+  const fore=new THREE.Group();fore.position.set(0,-.68,0);shoulder.add(fore);
+  capsule(fore,skin,.56,.085,[0,-.30,0]);
+  sphere(fore,armor,[0,-.30,.015],[.105,.22,.115]);
+  sphere(fore,skin,[0,-.62,.015],[.09,.13,.07]);
+  for(let f=0;f<4;f++)capsule(fore,skin,.17,.018,[(f-1.5)*.038,-.75,.055]);
+  capsule(fore,skin,.15,.022,[side*.105,-.67,.035]);
+  if(biomech){
+   sphere(shoulder,armor,[0,-.12,.06],[.22,.23,.16]);
+   box(shoulder,darkMetal,[0,-.40,.112],[.19,.35,.07],[0,0,side*.05]);
+   ring(fore,edgeMetal,[0,-.15,0],.105,.018,[Math.PI/2,0,0]);
+   box(fore,glow,[0,-.33,.13],[.035,.24,.018]);
+   box(fore,detailMat,[0,-.51,.12],[.13,.08,.035]);
+  }
+  arms.push({pivot:shoulder,fore,side});
+ }
+ // legs with visible hip, knee, shin and broad mechanical feet
+ const legs=[];
+ for(const side of [-1,1]){
+  const hip=new THREE.Group();hip.position.set(side*.19,1.58,0);group.add(hip);
+  sphere(hip,armor,[0,0,0],[.19,.21,.19]);
+  capsule(hip,pants,.77,.145,[0,-.39,0]);
+  sphere(hip,darkMetal,[0,-.78,0],[.145,.14,.15]);
+  const knee=new THREE.Group();knee.position.set(0,-.78,0);hip.add(knee);
+  capsule(knee,pants,.72,.115,[0,-.36,0]);
+  sphere(knee,armor,[0,-.05,.055],[.13,.14,.13]);
+  const foot=box(knee,shoe,[0,-.78,.13],[.22,.15,.42],[0,0,0]);
+  if(biomech){
+   sphere(hip,armor,[0,-.34,.08],[.17,.30,.13]);
+   box(hip,darkMetal,[0,-.49,.18],[.14,.32,.035]);
+   box(knee,edgeMetal,[0,-.05,.15],[.18,.17,.06]);
+   box(knee,armor,[0,-.40,.105],[.16,.38,.11]);
+   box(knee,glow,[0,-.42,.17],[.025,.26,.018]);
+   ring(knee,edgeMetal,[0,-.72,.02],.11,.018,[Math.PI/2,0,0]);
+   box(knee,darkMetal,[0,-.77,.25],[.24,.07,.23]);
+  }
+  legs.push({pivot:hip,knee,side});
+ }
+ if(biomech){
+  // Sculpted exoskeleton chest: layered pectoral plates, sternum, reactor and abdominal armor.
+  sphere(torso,darkMetal,[0,.12,.235],[.39,.43,.105],36);
+  for(const side of [-1,1]){
+   sphere(torso,armor,[side*.205,.19,.285],[.205,.235,.105],32);
+   sphere(torso,edgeMetal,[side*.205,.20,.365],[.13,.035,.018],24);
+   box(torso,darkMetal,[side*.20,-.12,.29],[.12,.22,.065],[0,0,side*.12]);
+   sphere(torso,glow,[side*.37,.38,.13],[.055,.075,.045],20);
+  }
+  box(torso,edgeMetal,[0,.18,.35],[.045,.43,.035]);
+  sphere(torso,darkMetal,[0,.03,.34],[.135,.17,.075],28);
+  sphere(torso,glow,[0,.03,.405],[.082,.105,.035],32);
+  ring(torso,edgeMetal,[0,.03,.415],.13,.018,[0,0,0]);
+  for(let i=0;i<3;i++){
+   const y=-.24-i*.14;
+   for(const side of [-1,1])box(torso,armor,[side*(.12-i*.018),y,.245],[.13,.075,.07],[0,0,side*.12]);
+   box(torso,glow,[0,y,.31],[.025,.055,.018]);
+  }
+  // collar, shoulder pauldrons, side ribs and segmented spine
+  ring(group,edgeMetal,[0,2.88,0],.17,.035,[Math.PI/2,0,0]);
+  for(const side of [-1,1]){
+   sphere(group,armor,[side*.52,2.69,0],[.25,.19,.26],28);
+   sphere(group,edgeMetal,[side*.54,2.73,.12],[.16,.045,.12],24);
+   box(group,darkMetal,[side*.37,2.29,-.17],[.12,.54,.12],[0,0,side*.12]);
+   box(group,glow,[side*.37,2.30,-.235],[.025,.36,.018]);
+  }
+  for(let i=0;i<9;i++){
+   const y=1.48+i*.145;
+   sphere(group,darkMetal,[0,y,-.235],[.09,.055,.07],16);
+   if(i%2===0)sphere(group,glow,[0,y,-.29],[.025,.027,.018],12);
+  }
+  // helmet-like temple structures while keeping a readable humanoid face
+  for(const side of [-1,1]){
+   sphere(headPivot,armor,[side*.245,.27,-.005],[.07,.19,.16],20);
+   box(headPivot,glow,[side*.265,.26,.14],[.025,.22,.035],[0,0,side*-.16]);
+  }
+  sphere(headPivot,darkMetal,[0,.54,-.02],[.19,.065,.19],24);
+  // small vents and mechanical insets on forearms and thighs
+  for(const side of [-1,1]){
+   for(let i=0;i<3;i++)box(group,edgeMetal,[side*.205,1.30-i*.10,.13],[.075,.025,.025],[0,0,side*.08]);
+  }
+  group.userData.biomech=true;group.userData.biomechMaterials={armor,darkMetal,glow,edgeMetal};
+ }
+ group.scale.setScalar(biomech?1.08:1);
+ group.position.set((Math.random()-.5)*.7,0,(Math.random()-.5)*.6);
+ group.userData.isCharacter=true;group.userData.rig={headPivot,arms,legs,baseY:group.position.y};group.userData.charMaterials={skin,hair,shirt,pants};group.userData.charBase={scale:group.scale.clone()};
+ scene.add(group);registerObject(group);selectObject(group);
+ // Frame the complete humanoid immediately so it fills the viewport instead of appearing tiny.
+ const bounds=new THREE.Box3().setFromObject(group),center=bounds.getCenter(new THREE.Vector3()),size=bounds.getSize(new THREE.Vector3()),span=Math.max(size.x,size.y,size.z);
+ controls.target.copy(center);camera.position.copy(center).add(new THREE.Vector3(span*1.25,span*.72,span*1.9));camera.near=.01;camera.far=200;camera.updateProjectionMatrix();controls.update();
+ status(biomech?'Umanoide biomeccanico completo creato · armatura articolata e volto dettagliato':'Personaggio umanoide articolato creato');return group;
 }
-$('createCharacter').onclick=createCharacter;
+$('createCharacterLegacy').onclick=createCharacter;
+$('openHumanCreator').onclick=()=>window.open('https://ara3dgen.com/app/','_blank','noopener');
+$('importHumanGLB').onclick=()=>$('modelFile').click();
+function applyAnymaPalette(){if(!selected){status('Seleziona prima un personaggio GLB');return}let changed=0;selected.traverse(n=>{if(!n.isMesh||!n.material)return;let base=anymaMaterialBackup.get(n);if(!base){base=Array.isArray(n.material)?n.material.map(m=>m.clone()):n.material.clone();anymaMaterialBackup.set(n,base)}const tint=m=>{const x=m.clone();if(x.color)x.color.lerp(new THREE.Color(0xc5d0dc),.62);if('metalness' in x)x.metalness=Math.max(Number(x.metalness)||0,.84);if('roughness' in x)x.roughness=Math.min(Number(x.roughness??.5),.24);if(x.emissive){x.emissive.set(0x10232d);x.emissiveIntensity=Math.max(Number(x.emissiveIntensity)||0,.18)}x.needsUpdate=true;return x};n.material=Array.isArray(base)?base.map(tint):tint(base);changed++});status(changed?'Palette Anyma applicata a '+changed+' mesh':'Il modello selezionato non contiene mesh modificabili')}
+function restoreAnymaPalette(){if(!selected){status('Seleziona prima un personaggio');return}let restored=0;selected.traverse(n=>{const base=anymaMaterialBackup.get(n);if(base){n.material=Array.isArray(base)?base.map(m=>m.clone()):base.clone();anymaMaterialBackup.delete(n);restored++}});status(restored?'Materiali originali ripristinati':'Non ci sono materiali Anyma da ripristinare')}
+$('applyAnymaLook').onclick=applyAnymaPalette;$('restoreAnymaLook').onclick=restoreAnymaPalette;
 function applyCharacterCustomizer(){const c=selected;if(!c?.userData?.isCharacter){status('Seleziona prima un personaggio');return}const r=c.userData.rig,m=c.userData.charMaterials;c.scale.y=+$('charHeight').value;c.userData.charBase.scale.copy(c.scale);r.headPivot.scale.setScalar(+$('charHead').value);c.children.forEach(n=>{if(n.geometry?.type==='CapsuleGeometry'&&n.material===m.shirt)n.scale.x=+$('charShoulders').value});r.legs.forEach(l=>{l.pivot.scale.y=+$('charLegs').value;l.pivot.position.y=.93});m.skin.color.set($('charSkin').value);m.hair.color.set($('charHair').value);m.shirt.color.set($('charClothes').value);m.pants.color.set($('charPants').value)}
 ['charHeight','charHead','charShoulders','charLegs','charSkin','charHair','charClothes','charPants'].forEach(id=>$(id).addEventListener('input',applyCharacterCustomizer));
 $('addFX').onclick=()=>{const count=650,positions=new Float32Array(count*3);for(let i=0;i<count;i++){positions[i*3]=(Math.random()-.5)*5;positions[i*3+1]=Math.random()*4;positions[i*3+2]=(Math.random()-.5)*5}const geo=new THREE.BufferGeometry();geo.setAttribute('position',new THREE.BufferAttribute(positions,3));const mat=new THREE.PointsMaterial({color:0x53dfff,size:.055,transparent:true,opacity:.85,blending:THREE.AdditiveBlending,depthWrite:false});const fx=new THREE.Points(geo,mat);fx.name='Effetto particelle';fx.userData.isFX=true;scene.add(fx);registerObject(fx);selectObject(fx);status('Sistema particellare aggiunto')};
